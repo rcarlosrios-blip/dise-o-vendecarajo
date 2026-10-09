@@ -1,0 +1,9 @@
+:root{
+--ink:#0B0B0B;--graphite:#2B2B2B;--mute:#5E5E5E;--hairline:#D4D3CF;
+--paper:#FFFFFF;
+--red:#D3202F;--red-deep:#A8121F;
+--surface-page:var(--paper);--surface-dark:var(--ink);--surface-accent:var(--red);
+--text-primary:var(--ink);--text-secondary:var(--mute);--text-inverse:var(--paper);
+--accent:var(--red);
+--border-rule:var(--ink);--border-subtle:var(--hairline);
+}

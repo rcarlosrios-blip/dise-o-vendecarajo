@@ -1,0 +1,18 @@
+:root{
+--font-sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+--font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+--wdth-condensed:72; /* @kind other */
+--wdth-normal:100; /* @kind other */
+
+/* Escala para lienzo 1080px (carrusel / post) */
+--size-mega:200px;--size-display:120px;--size-h1:84px;--size-h2:56px;--size-h3:40px;--size-body:30px;--size-caption:24px;--size-micro:18px;
+--lh-tight:0.9; /* @kind font */
+--lh-snug:1.05; /* @kind font */
+--lh-body:1.3; /* @kind font */
+
+--tracking-display:-0.045em;--tracking-head:-0.025em;--tracking-body:-0.005em;--tracking-mono:0.02em;
+--weight-light:300;--weight-regular:400;--weight-medium:500;--weight-bold:700;--weight-black:850;
+--text-display:var(--weight-bold) var(--size-display)/var(--lh-tight) var(--font-sans);
+--text-body:var(--weight-regular) var(--size-body)/var(--lh-body) var(--font-sans);
+--text-caption:var(--weight-medium) var(--size-caption)/var(--lh-body) var(--font-mono);
+}

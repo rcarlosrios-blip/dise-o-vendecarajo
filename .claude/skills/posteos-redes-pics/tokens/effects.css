@@ -1,0 +1,9 @@
+:root{
+--radius-0:0px;--radius-label:4px;--radius-media:0px;
+--rule-hair:1px solid var(--border-rule);--rule-thick:4px solid var(--border-rule);
+--shadow-none:none;
+--ease-cut:cubic-bezier(.2,0,0,1); /* @kind other */
+--dur-fast:120ms; /* @kind other */
+--dur-base:220ms; /* @kind other */
+
+}

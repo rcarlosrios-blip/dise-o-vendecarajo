@@ -1,0 +1,36 @@
+<!-- @dsCard group="LinkedIn" viewport="1280x800" name="Kit LinkedIn" subtitle="Carrusel, posts y banner" -->
+<!doctype html><html><head><meta charset="utf-8"><title>Kit LinkedIn — Roberto Ríos</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>html,body{margin:0;height:100%;background:#1a1a1a;font-family:var(--font-sans)}a{color:var(--paper)}a:hover{color:var(--red)}</style></head><body><div id="root" style="height:100%"></div>
+<script type="text/babel" src="Slides.jsx"></script>
+<script type="text/babel" src="Formats.jsx"></script>
+<script type="text/babel">
+const SETS={carrusel:{w:1080,h:1350,items:[['Portada',SlideCover],['Problema',SlideProblem],['Método',SlideLetters],['Caso',SlideCase],['Cifras',SlideStats],['Cierre',SlideCTA]]},post:{w:1080,h:1080,items:[['Dato',PostStat],['Nota',PostQuote]]},banner:{w:1584,h:396,items:[['Banner de perfil',Banner]]}};
+function App(){
+  const [fmt,setFmt]=React.useState(localStorage.getItem('rr-fmt')||'carrusel');const [i,setI]=React.useState(0);
+  const set=SETS[fmt];const n=set.items.length;const Cur=set.items[Math.min(i,n-1)][1];
+  const ref=React.useRef();const [sc,setSc]=React.useState(.4);
+  React.useEffect(()=>{const f=()=>{const r=ref.current.getBoundingClientRect();setSc(Math.min((r.width-48)/set.w,(r.height-48)/set.h))};f();addEventListener('resize',f);return()=>removeEventListener('resize',f)},[fmt]);
+  React.useEffect(()=>{const k=e=>{if(e.key==='ArrowRight')setI(x=>Math.min(n-1,x+1));if(e.key==='ArrowLeft')setI(x=>Math.max(0,x-1))};addEventListener('keydown',k);return()=>removeEventListener('keydown',k)},[n]);
+  const pick=f=>{setFmt(f);setI(0);localStorage.setItem('rr-fmt',f)};
+  const btn=on=>({background:on?'var(--paper)':'transparent',color:on?'var(--ink)':'var(--paper)',border:'1px solid var(--paper)',padding:'8px 14px',font:'600 14px var(--font-sans)',cursor:'pointer',borderRadius:0});
+  return <div style={{display:'grid',gridTemplateRows:'auto 1fr auto',height:'100%',color:'var(--paper)'}}>
+    <header style={{display:'flex',alignItems:'center',gap:24,padding:'14px 24px',borderBottom:'1px solid #333'}}>
+      <div style={{fontWeight:700,fontSize:20,letterSpacing:'-0.04em'}}>Roberto Ríos</div><div style={{font:'500 12px var(--font-mono)',color:'#999',textTransform:'uppercase'}}>Kit LinkedIn</div>
+      <div style={{display:'flex',gap:0,marginLeft:'auto'}}>{Object.keys(SETS).map(f=><button key={f} style={btn(f===fmt)} onClick={()=>pick(f)}>{f[0].toUpperCase()+f.slice(1)}</button>)}</div>
+    </header>
+    <main ref={ref} style={{position:'relative',overflow:'hidden',display:'flex',alignItems:'center',justifyContent:'center'}}>
+      <div style={{width:set.w*sc,height:set.h*sc,position:'relative'}}><div style={{transform:'scale('+sc+')',transformOrigin:'0 0',position:'absolute'}}><Cur/></div></div>
+      {i>0&&<button onClick={()=>setI(i-1)} style={{...btn(false),position:'absolute',left:24}}>←</button>}
+      {i<n-1&&<button onClick={()=>setI(i+1)} style={{...btn(false),position:'absolute',right:24}}>→</button>}
+    </main>
+    <footer style={{display:'flex',gap:8,padding:'12px 24px',borderTop:'1px solid #333',overflowX:'auto'}}>
+      {set.items.map(([lbl],k)=><button key={k} onClick={()=>setI(k)} style={{...btn(k===i),font:'500 12px var(--font-mono)'}}>{String(k+1).padStart(2,'0')} {lbl}</button>)}
+    </footer>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>
