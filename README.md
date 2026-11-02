@@ -17,3 +17,7 @@ cd .claude/skills && zip -r posteos-redes-pics.zip posteos-redes-pics
 ## Actualizarla
 
 Edita los archivos de la carpeta, haz commit y vuelve a subir el ZIP a claude.ai para que el chat use la versión nueva.
+
+## Edición de video
+
+La skill de edición de video vertical (Reels/TikTok/Shorts) vive en [`.claude/skills/edicion-video-rc/`](.claude/skills/edicion-video-rc/): gancho, textos grandes, secciones numeradas, imágenes de soporte y cierre. El render lo hace `scripts/build_video.py` a partir de un `plan.json` (formato en `references/plan.md`).
